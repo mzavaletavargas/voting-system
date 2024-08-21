@@ -1,5 +1,6 @@
 package com.gustavozavaleta.portfolio.votingservice.controllers;
 
+import com.gustavozavaleta.portfolio.votingservice.controllers.dto.ElectionEventCandidatesOutput;
 import com.gustavozavaleta.portfolio.votingservice.model.Candidates;
 import com.gustavozavaleta.portfolio.votingservice.model.ElectionEvents;
 import com.gustavozavaleta.portfolio.votingservice.services.ElectionsEventServices;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("election-events")
@@ -26,8 +28,10 @@ public class ElectionsController {
     }
 
     @GetMapping("/candidates")
-    public List<Candidates> getCandidates(@RequestParam String electionId) {
-        return electionsEventServices.getCandidatesByElection(electionId);
+    public List<ElectionEventCandidatesOutput> getCandidates(@RequestParam String electionId) {
+        List<ElectionEventCandidatesOutput> candidates = electionsEventServices.getCandidatesByElection(electionId);
+        return candidates;
+//        return electionsEventServices.getCandidatesByElection(electionId);
     }
 
 

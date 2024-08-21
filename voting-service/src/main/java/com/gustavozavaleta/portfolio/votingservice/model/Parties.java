@@ -20,6 +20,15 @@ public class Parties {
     private UUID id;
     private String name;
     private String foundationDate;
+    private String logo;
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 
     public UUID getId() {
         return id;

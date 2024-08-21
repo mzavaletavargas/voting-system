@@ -96,6 +96,7 @@ public class DummyDataService {
             Parties party = new Parties();
             party.setId(partyId1);
             party.setName("party 1");
+            party.setLogo("https://placehold.co/400x400");
             party.setFoundationDate(new Date().toString());
             saveIfNotExists(partiesRepo, partyId1, party);
 
@@ -104,6 +105,7 @@ public class DummyDataService {
             Parties party2 = new Parties();
             party2.setId(partyId2);
             party2.setName("party 2");
+            party2.setLogo("https://placehold.co/400x400");
             party2.setFoundationDate(new Date().toString());
             saveIfNotExists(partiesRepo, partyId2, party2);
 
@@ -112,6 +114,7 @@ public class DummyDataService {
             candidate.setId(candidateId1);
             candidate.setParty(party);
             candidate.setUsers(user);
+            candidate.setLogo("https://placehold.co/400x400");
             candidate.setElectionEvent(electionEvent);
             saveIfNotExists(candidatesRepo, candidateId1, candidate);
 
@@ -121,6 +124,7 @@ public class DummyDataService {
             candidate2.setId(candidateId2);
             candidate2.setElectionEvent(electionEvent);
             candidate2.setParty(party2);
+            candidate.setLogo("https://placehold.co/400x400");
             candidate2.setUsers(user2);
             saveIfNotExists(candidatesRepo, candidateId2, candidate2);
 

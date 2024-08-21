@@ -30,6 +30,10 @@ public class ElectionEvents {
     @OneToMany(mappedBy = "electionEvent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Candidates> candidates;
 
+    public List<Candidates> getCandidates() {
+        return candidates;
+    }
+
     public Boolean getActive() {
         return active;
     }

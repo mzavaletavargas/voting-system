@@ -2,7 +2,9 @@ package com.gustavozavaleta.portfolio.votingservice.controllers;
 
 import com.gustavozavaleta.portfolio.votingservice.controllers.dto.IdentifyInput;
 import com.gustavozavaleta.portfolio.votingservice.services.UserService;
+import org.apache.coyote.BadRequestException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController()
 @RequestMapping("/citizen")
@@ -14,8 +16,10 @@ public class UserController {
     }
 
     @PostMapping("/identify")
-    public Boolean identify(@RequestBody IdentifyInput identifyInput) {
-        return userService.idenitfyUser(identifyInput);
+    public Boolean identify(@ModelAttribute IdentifyInput identifyInput) {
+
+        return userService.identifyUser(identifyInput);
+
     }
 
 }

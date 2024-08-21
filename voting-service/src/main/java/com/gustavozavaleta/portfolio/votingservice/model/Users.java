@@ -13,8 +13,8 @@ public class Users {
     @Id
     @Column( nullable = false)
     private UUID id;
-    private int nationalId;
-    private int verificationNumber;
+    private Integer nationalId;
+    private Integer verificationNumber;
     private String name;
     private String dateOfBirth;
     private String email;
@@ -27,20 +27,20 @@ public class Users {
         this.id = id;
     }
 
-    public Number getNationalId() {
+    public Integer getNationalId() {
         return nationalId;
     }
 
-    public Number getVerificationNumber() {
+    public void setNationalId(Integer nationalId) {
+        this.nationalId = nationalId;
+    }
+
+    public Integer getVerificationNumber() {
         return verificationNumber;
     }
 
-    public void setVerificationNumber(int verificationNumber) {
+    public void setVerificationNumber(Integer verificationNumber) {
         this.verificationNumber = verificationNumber;
-    }
-
-    public void setNationalId(int nationalId) {
-        this.nationalId = nationalId;
     }
 
     public String getName() {
@@ -66,7 +66,6 @@ public class Users {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    private Candidates candidates ;
+//    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+//    private Candidates candidates ;
 }

@@ -77,7 +77,7 @@ public class DummyDataService {
             Users user = new Users();
             user.setId(userId1);
             user.setEmail("user@gmail.com");
-            user.setNationalId(7666323);
+            user.setNationalId(76663232);
             user.setVerificationNumber(1);
             user.setName("demo user");
             saveIfNotExists(usersRepo, userId1, user);
@@ -87,7 +87,7 @@ public class DummyDataService {
             Users user2 = new Users();
             user2.setId(userId2);
             user2.setEmail("user2@gmail.com");
-            user2.setNationalId(1666323);
+            user2.setNationalId(16663232);
             user2.setVerificationNumber(2);
             user2.setName("second demo user");
             saveIfNotExists(usersRepo, userId2, user2);

@@ -38,14 +38,15 @@ function IdentifyUserForm() {
     takePhoto();
     
     const formData = new FormData();
-    formData.append("identifyInput", JSON.stringify({ nationalId, verificationNumber }));
+    formData.append("documentId", nationalId);
+    formData.append("verificationNumber", verificationNumber);
     if (photo) {
       const blob = await fetch(photo).then((res) => res.blob());
-      formData.append("file", blob, "photo.png");
+      formData.append("verificationImage", blob, "photo.png");
     }
 
     try {
-      const response = await axios.post("/api/identify", formData, {
+      const response = await axios.post(`http://localhost:8080/citizen/identify`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

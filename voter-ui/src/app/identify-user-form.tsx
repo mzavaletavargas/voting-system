@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaInfoCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 function IdentifyUserForm() {
   const [nationalId, setNationalId] = useState("");
@@ -10,6 +11,7 @@ function IdentifyUserForm() {
   const [photo, setPhoto] = useState(null);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     startCamera();
@@ -51,7 +53,7 @@ function IdentifyUserForm() {
           "Content-Type": "multipart/form-data",
         },
       });
-      
+      navigate('/events')
       console.log("Response:", response.data);
     } catch (error) {
       console.error("There was an error!", error);

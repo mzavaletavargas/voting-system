@@ -17,12 +17,11 @@ public class BallotsController {
 
     @PostMapping
     public Boolean createBallot(@RequestBody BallotInput ballotInput) {
-        if(ballotInput.getToken()) {
+
 
             Boolean response = ballotsService.createBallot(ballotInput.toBallot());
 
             return true;
-        }
-        return false;
+
     }
 }

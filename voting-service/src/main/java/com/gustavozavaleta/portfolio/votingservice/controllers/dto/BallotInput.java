@@ -2,33 +2,39 @@ package com.gustavozavaleta.portfolio.votingservice.controllers.dto;
 
 import com.gustavozavaleta.portfolio.votingservice.model.Ballots;
 import com.gustavozavaleta.portfolio.votingservice.model.Candidates;
+import com.gustavozavaleta.portfolio.votingservice.model.ElectionEvents;
 
+import java.util.Date;
 import java.util.UUID;
 
 public class BallotInput {
-    private String candidateId;
-    private Boolean token;
+    private UUID candidateId;
+    private UUID electionEventId;
 
-    public String getCandidateId() {
+    public UUID getElectionEventId() {
+        return electionEventId;
+    }
+
+    public void setElectionEventId(UUID electionEventId) {
+        this.electionEventId = electionEventId;
+    }
+
+    public UUID getCandidateId() {
         return candidateId;
     }
 
-    public void setCandidateId(String candidateId) {
+    public void setCandidateId(UUID candidateId) {
         this.candidateId = candidateId;
-    }
-
-    public Boolean getToken() {
-        return token;
-    }
-
-    public void setToken(Boolean token) {
-        this.token = token;
     }
 
     public Ballots toBallot() {
         var ballot = new Ballots();
+        var electionEvent = new ElectionEvents();
+        electionEvent.setId(electionEventId);
         ballot.setCandidates(new Candidates());
-        ballot.getCandidates().setId(UUID.fromString(candidateId));
+        ballot.getCandidates().setId(candidateId);
+        ballot.setElectionEvents(electionEvent);
+        ballot.setTimestamp(new Date(System.currentTimeMillis()));
         return ballot;
     }
 }

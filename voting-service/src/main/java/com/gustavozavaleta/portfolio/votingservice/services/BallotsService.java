@@ -32,6 +32,7 @@ public class BallotsService {
             Ballots newBallot = new Ballots();
             newBallot.setCandidates(candidate);
             newBallot.setElectionEvents(candidate.getElectionEvent());
+            newBallot.setTimestamp(ballotX.getTimestamp());
             ballotsRepo.save(newBallot);
 
             Results result = resultsRepo.findOneByElectionEventsAndCandidates(candidate.getElectionEvent(), candidate);

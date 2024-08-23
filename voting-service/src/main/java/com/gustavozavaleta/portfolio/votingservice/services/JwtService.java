@@ -30,6 +30,14 @@ public class JwtService {
         secretKey = generateSecretKey();
     }
 
+    public boolean isValidJwtFormat(String token) {
+        if (token == null) {
+            return false;
+        }
+        String[] parts = token.split("\\.");
+        return parts.length == 3;
+    }
+
     public String generateSecretKey() {
         try {
             KeyGenerator keyGen = KeyGenerator.getInstance("HmacSHA256");
@@ -45,7 +53,7 @@ public class JwtService {
         Map<String, Object> claims = new HashMap<>();
         return Jwts.builder().claims(claims).subject(documentId.toString()
                 ).issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 1000*60*3))
+                .expiration(new Date(System.currentTimeMillis() + 100000*60*3))
                 .signWith(getKey()).compact();
     }
 

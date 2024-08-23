@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.UUID;
 
 @Component
@@ -14,7 +15,7 @@ public class Ballots {
     @Id
     @GeneratedValue
     private UUID id;
-    private String timestamp;
+    private Date timestamp;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     private ElectionEvents electionEvents;
@@ -47,11 +48,11 @@ public class Ballots {
         this.id = id;
     }
 
-    public String getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 }

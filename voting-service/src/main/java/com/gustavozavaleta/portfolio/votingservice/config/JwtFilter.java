@@ -4,6 +4,7 @@ import com.gustavozavaleta.portfolio.votingservice.model.UserPrincipal;
 import com.gustavozavaleta.portfolio.votingservice.model.Users;
 import com.gustavozavaleta.portfolio.votingservice.services.JwtService;
 import com.gustavozavaleta.portfolio.votingservice.services.UserService;
+import io.jsonwebtoken.security.SignatureException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,15 +34,15 @@ public class JwtFilter extends OncePerRequestFilter {
         String authHeader = request.getHeader("Authorization");
         String token;
         String documentId = null;
-
+        try {
         if(authHeader!= null && authHeader.startsWith(("Bearer "))) {
             token = authHeader.substring(7);
             documentId = jwtService.extractDocumentId(token);
         } else {
             token = null;
         }
-
-        if(documentId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+        Boolean isValidToken = jwtService.isValidJwtFormat(token);
+        if(isValidToken && documentId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             Optional<Users> user = context.getBean(UserService.class).getUser(Integer.valueOf(documentId));
             if(user.isPresent()) {
                 if(jwtService.validateToken(token, user.get())) {
@@ -54,6 +55,11 @@ public class JwtFilter extends OncePerRequestFilter {
                 }
             }
 
+        }
+        } catch (SignatureException ex) {
+            System.out.println("Invalid JWT signature: " + ex.getMessage());
+        } catch (Exception ex) {
+            System.out.println("Invalid JWT token: " + ex.getMessage());
         }
         filterChain.doFilter(request, response);
 

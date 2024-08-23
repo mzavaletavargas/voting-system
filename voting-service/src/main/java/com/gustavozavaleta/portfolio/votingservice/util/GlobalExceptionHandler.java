@@ -28,15 +28,16 @@ public class GlobalExceptionHandler {
     }
 
     // Handle other exceptions (like validation errors, etc.)
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
-        body.put("error", "Internal Server Error");
-        body.put("message", ex.getMessage());
-        body.put("path", request.getDescription(false));
-
-        return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
+//        System.out.println(ex);
+//        Map<String, Object> body = new HashMap<>();
+//        body.put("timestamp", LocalDateTime.now());
+//        body.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+//        body.put("error", "Internal Server Error");
+//        body.put("message", ex.getMessage());
+//        body.put("path", request.getDescription(false));
+//
+//        return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 }

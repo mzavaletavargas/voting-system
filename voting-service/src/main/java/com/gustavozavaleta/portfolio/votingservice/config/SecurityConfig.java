@@ -20,11 +20,6 @@ public class SecurityConfig {
     @Autowired
     private JwtFilter jwtFilter;
 
-//    @Bean
-//    public AuthenticationProvider authProvider() {
-//        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-//        return provider;
-//    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {

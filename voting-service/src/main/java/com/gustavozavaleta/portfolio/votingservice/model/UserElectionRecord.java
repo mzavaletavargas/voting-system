@@ -6,8 +6,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-@Component
-@Scope("prototype")
 @Entity
 @Table(name = "user_election_record", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"user_id", "election_event_id"})

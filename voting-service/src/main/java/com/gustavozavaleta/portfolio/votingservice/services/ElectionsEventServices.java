@@ -38,6 +38,6 @@ public class ElectionsEventServices {
                         candidate.getLogo(), // Assuming Users entity has a getPhoto() method
                         candidate.getParty().getLogo()
                 ))
-                .collect(Collectors.toList());
+                .toList();
     }
 }

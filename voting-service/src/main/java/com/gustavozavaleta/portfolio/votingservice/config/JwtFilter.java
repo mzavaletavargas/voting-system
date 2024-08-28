@@ -35,27 +35,27 @@ public class JwtFilter extends OncePerRequestFilter {
         String token;
         String documentId = null;
         try {
-        if(authHeader!= null && authHeader.startsWith(("Bearer "))) {
-            token = authHeader.substring(7);
-            documentId = jwtService.extractDocumentId(token);
-        } else {
-            token = null;
-        }
-        Boolean isValidToken = jwtService.isValidJwtFormat(token);
-        if(isValidToken && documentId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            Optional<Users> user = context.getBean(UserService.class).getUser(Integer.valueOf(documentId));
-            if(user.isPresent()) {
-                if(jwtService.validateToken(token, user.get())) {
-
-                    UserPrincipal userPrincipal = new UserPrincipal(user.get());
-                    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userPrincipal, null, userPrincipal.getAuthorities());
-                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    SecurityContextHolder.getContext().setAuthentication(authToken);
-
-                }
+            if (authHeader != null && authHeader.startsWith(("Bearer "))) {
+                token = authHeader.substring(7);
+                documentId = jwtService.extractDocumentId(token);
+            } else {
+                token = null;
             }
+            boolean isValidToken = jwtService.isValidJwtFormat(token);
+            if (isValidToken && documentId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                Optional<Users> user = context.getBean(UserService.class).getUser(Integer.valueOf(documentId));
+                if (user.isPresent()) {
+                    if (jwtService.validateToken(token, user.get())) {
 
-        }
+                        UserPrincipal userPrincipal = new UserPrincipal(user.get());
+                        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userPrincipal, null, userPrincipal.getAuthorities());
+                        authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                        SecurityContextHolder.getContext().setAuthentication(authToken);
+
+                    }
+                }
+
+            }
         } catch (SignatureException ex) {
             System.out.println("Invalid JWT signature: " + ex.getMessage());
         } catch (Exception ex) {

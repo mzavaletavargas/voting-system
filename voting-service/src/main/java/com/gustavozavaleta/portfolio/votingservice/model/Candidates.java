@@ -7,12 +7,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
-@Component
-@Scope("prototype")
+
+
 @Entity
 public class Candidates {
     @Id
-//    @GeneratedValue
     private UUID id;
     private String biography;
     private String logo;

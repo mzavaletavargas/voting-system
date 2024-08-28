@@ -4,6 +4,7 @@ import com.gustavozavaleta.portfolio.votingservice.controllers.dto.BallotInput;
 import com.gustavozavaleta.portfolio.votingservice.model.UserPrincipal;
 import com.gustavozavaleta.portfolio.votingservice.model.Users;
 import com.gustavozavaleta.portfolio.votingservice.services.BallotsService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,11 +20,11 @@ public class BallotsController {
     }
 
     @PostMapping
-    public Boolean createBallot(@RequestBody BallotInput ballotInput) {
+    public ResponseEntity<Void>  createBallot(@RequestBody BallotInput ballotInput) {
         UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Users user = userPrincipal.getUser();
-        Boolean response = ballotsService.createBallot(ballotInput.toBallot(), user);
+        ballotsService.createBallot(ballotInput.toBallot(), user);
 
-        return true;
+        return ResponseEntity.noContent().build();
     }
 }

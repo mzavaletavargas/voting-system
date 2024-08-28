@@ -6,13 +6,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-@Component
-@Scope("prototype")
 @Entity
 public class Results {
 
     @Id
-//    @GeneratedValue
     private UUID id;
     private int totalVotes;
     private String lastUpdated;

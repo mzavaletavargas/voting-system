@@ -7,11 +7,9 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.UUID;
 
-@Component
-@Scope("prototype")
+
 @Entity
 public class Ballots {
-
     @Id
     @GeneratedValue
     private UUID id;

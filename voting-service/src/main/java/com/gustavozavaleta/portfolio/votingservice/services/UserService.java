@@ -3,7 +3,7 @@ package com.gustavozavaleta.portfolio.votingservice.services;
 import com.gustavozavaleta.portfolio.votingservice.controllers.dto.IdentifyInput;
 import com.gustavozavaleta.portfolio.votingservice.model.Users;
 import com.gustavozavaleta.portfolio.votingservice.repositories.UsersRepo;
-import com.gustavozavaleta.portfolio.votingservice.util.UserNotFoundException;
+import com.gustavozavaleta.portfolio.votingservice.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

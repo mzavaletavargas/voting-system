@@ -4,10 +4,8 @@ import com.gustavozavaleta.portfolio.votingservice.controllers.dto.ElectionEvent
 import com.gustavozavaleta.portfolio.votingservice.model.Candidates;
 import com.gustavozavaleta.portfolio.votingservice.model.ElectionEvents;
 import com.gustavozavaleta.portfolio.votingservice.services.ElectionsEventServices;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,11 +25,9 @@ public class ElectionsController {
         return electionsEventServices.getCurrentElections();
     }
 
-    @GetMapping("/candidates")
-    public List<ElectionEventCandidatesOutput> getCandidates(@RequestParam String electionId) {
-        List<ElectionEventCandidatesOutput> candidates = electionsEventServices.getCandidatesByElection(electionId);
-        return candidates;
-//        return electionsEventServices.getCandidatesByElection(electionId);
+    @GetMapping("/candidates/{electionId}")
+    public List<ElectionEventCandidatesOutput> getCandidates(@PathVariable String electionId) {
+        return electionsEventServices.getCandidatesByElection(electionId);
     }
 
 

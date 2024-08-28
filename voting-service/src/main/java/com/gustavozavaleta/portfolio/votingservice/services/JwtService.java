@@ -1,5 +1,6 @@
 package com.gustavozavaleta.portfolio.votingservice.services;
 
+import com.gustavozavaleta.portfolio.votingservice.exception.JwtException;
 import com.gustavozavaleta.portfolio.votingservice.model.Users;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
@@ -45,7 +46,7 @@ public class JwtService {
             System.out.println("Secret Key: " + secretKey.toString());
             return Base64.getEncoder().encodeToString(secretKey.getEncoded());
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
+            throw new JwtException(e);
         }
     }
 

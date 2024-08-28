@@ -10,13 +10,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Component
-@Scope("prototype")
 @Entity
 public class Parties {
 
     @Id
-//    @GeneratedValue
     private UUID id;
     private String name;
     private String foundationDate;

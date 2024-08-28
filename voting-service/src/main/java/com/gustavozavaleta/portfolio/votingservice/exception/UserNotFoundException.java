@@ -1,4 +1,4 @@
-package com.gustavozavaleta.portfolio.votingservice.util;
+package com.gustavozavaleta.portfolio.votingservice.exception;
 
 public class UserNotFoundException extends RuntimeException {
 

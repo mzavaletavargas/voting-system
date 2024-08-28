@@ -6,8 +6,7 @@ import com.gustavozavaleta.portfolio.votingservice.repositories.CandidateRepo;
 import com.gustavozavaleta.portfolio.votingservice.repositories.ResultsRepo;
 import com.gustavozavaleta.portfolio.votingservice.repositories.UserElectionRecordRepo;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BallotsService {
@@ -24,35 +23,30 @@ public class BallotsService {
         this.userElectionRecordRepo = userElectionRecordRepo;
     }
 
-    public Boolean createBallot(Ballots ballotX, Users user) {
-        var candidateId = ballotX.getCandidates().getId();
+    @Transactional
+    public void createBallot(Ballots ballot, Users user) {
+        var candidateId = ballot.getCandidates().getId();
+        Candidates candidate = candidateRepo.findById(candidateId).orElseThrow(() -> new IllegalArgumentException("candidate not found"));
 
-        try {
-            Candidates candidate = candidateRepo.findById(candidateId).orElseThrow(() -> new IllegalArgumentException("candidate not found"));
+        Ballots newBallot = new Ballots();
+        newBallot.setCandidates(candidate);
+        newBallot.setElectionEvents(candidate.getElectionEvent());
+        newBallot.setTimestamp(ballot.getTimestamp());
+        ballotsRepo.save(newBallot);
 
-            Ballots newBallot = new Ballots();
-            newBallot.setCandidates(candidate);
-            newBallot.setElectionEvents(candidate.getElectionEvent());
-            newBallot.setTimestamp(ballotX.getTimestamp());
-            ballotsRepo.save(newBallot);
+        Results result = resultsRepo.findOneByElectionEventsAndCandidates(candidate.getElectionEvent(), candidate);
+        int totalVotes = result.getTotalVotes();
+        totalVotes = totalVotes + 1;
+        result.setTotalVotes(totalVotes);
 
-            Results result = resultsRepo.findOneByElectionEventsAndCandidates(candidate.getElectionEvent(), candidate);
-            int totalVotes = result.getTotalVotes();
-            totalVotes = totalVotes + 1;
-            result.setTotalVotes(totalVotes);
-
-            resultsRepo.save(result);
+        resultsRepo.save(result);
 
 
-            UserElectionRecord electionRecord = new UserElectionRecord();
-            electionRecord.setUser(user);
-            electionRecord.setElectionEvent(candidate.getElectionEvent());
+        UserElectionRecord electionRecord = new UserElectionRecord();
+        electionRecord.setUser(user);
+        electionRecord.setElectionEvent(candidate.getElectionEvent());
 
-            userElectionRecordRepo.save(electionRecord);
+        userElectionRecordRepo.save(electionRecord);
 
-            return true;
-        } catch( Exception e ) {
-            return false;
-        }
     }
 }

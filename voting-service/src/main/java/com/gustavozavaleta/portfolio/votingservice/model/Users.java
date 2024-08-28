@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.UUID;
 
-
 @Entity
 public class Users {
     @Id
@@ -66,6 +65,5 @@ public class Users {
     public void setEmail(String email) {
         this.email = email;
     }
-//    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-//    private Candidates candidates ;
+
 }

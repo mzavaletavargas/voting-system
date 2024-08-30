@@ -11,7 +11,7 @@ function VotingPage({params}) {
 
   useEffect(() => {
     // Fetch candidates from the API
-    http.get(`/election-events/candidates?electionId=${params.slug}`)
+    http.get(`/election-events/candidates/${params.slug}`)
       .then(response => {
         setCandidates(response.data);
       })

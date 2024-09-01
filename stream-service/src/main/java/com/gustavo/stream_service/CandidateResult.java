@@ -3,43 +3,43 @@ package com.gustavo.stream_service;
 import java.util.UUID;
 
 public class CandidateResult {
-    private UUID candidateId;
-    private String candidateName;
-    private String partyName;
+    private UUID id;
+    private String name;
+    private String party;
     private long votes;
 
     // Constructors, getters, and setters
     public CandidateResult() {}
 
-    public CandidateResult(UUID candidateId, String candidateName, String partyName, long votes) {
-        this.candidateId = candidateId;
-        this.candidateName = candidateName;
-        this.partyName = partyName;
+    public CandidateResult(UUID id, String name, String party, long votes) {
+        this.id = id;
+        this.name = name;
+        this.party = party;
         this.votes = votes;
     }
 
-    public UUID getCandidateId() {
-        return candidateId;
+    public UUID getId() {
+        return id;
     }
 
-    public void setCandidateId(UUID candidateId) {
-        this.candidateId = candidateId;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
-    public String getCandidateName() {
-        return candidateName;
+    public String getName() {
+        return name;
     }
 
-    public void setCandidateName(String candidateName) {
-        this.candidateName = candidateName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPartyName() {
-        return partyName;
+    public String getParty() {
+        return party;
     }
 
-    public void setPartyName(String partyName) {
-        this.partyName = partyName;
+    public void setParty(String party) {
+        this.party = party;
     }
 
     public long getVotes() {

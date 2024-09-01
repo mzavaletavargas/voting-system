@@ -27,7 +27,7 @@ public class UserController {
     public String identify(@ModelAttribute IdentifyInput identifyInput) {
 
         if (userService.identifyUser(identifyInput))
-            return jwtService.generateToken(identifyInput.getDocumentId());
+            return "Bearer " + jwtService.generateToken(identifyInput.getDocumentId());
         else
             throw new UnauthorizedException();
 

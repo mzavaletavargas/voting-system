@@ -3,13 +3,9 @@ package com.gustavozavaleta.portfolio.votingservice.services;
 import com.gustavozavaleta.portfolio.votingservice.model.*;
 import com.gustavozavaleta.portfolio.votingservice.repositories.*;
 import jakarta.annotation.PostConstruct;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.Optional;

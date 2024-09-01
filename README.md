@@ -26,13 +26,13 @@ stream-service: will feed data to the public (real time resuls of the election i
 
 ## Todo
 
-- include lombok
+- ~~include lombok~~
 - improve voter-ui
-- send data from voting-service to stream-service
-- stream-service should serve data to a public UI
+- ~~send data from voting-service to stream-service~~
+- ~~stream-service should serve data to a public UI~~
 - separate in a different service image processing to validate user and notify the user-service when it's done
 - separate user authentification to a new service (user-service)
-- add kafka to communicate and change communication to be an event-driven design
+- ~~add kafka to communicate and change communication to be an event-driven design~~
 - add integration tests
 - update the project to work with k8s
 
@@ -44,3 +44,9 @@ voting-service: run the app with graddle
 ![](/resources/demo1.mov)
 
 <video style="width:70%" controls src="resources/demo1.mov"></video>
+
+
+## topic
+
+voting-system.events.presidential-2024
+

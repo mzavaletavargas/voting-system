@@ -128,7 +128,7 @@ public class DummyDataService {
 
             Results results = new Results();
             results.setId(results1Id);
-            results.setTotalVotes(0);
+            results.setTotalVotes(25);
             results.setCandidates(candidate);
             results.setElectionEvents(electionEvent);
             saveIfNotExists(resultsRepo, results1Id, results);
@@ -137,7 +137,7 @@ public class DummyDataService {
 
             Results results2= new Results();
             results2.setId(results2Id);
-            results2.setTotalVotes(0);
+            results2.setTotalVotes(65);
             results2.setCandidates(candidate2);
             results2.setElectionEvents(electionEvent);
             saveIfNotExists(resultsRepo, results2Id, results2);

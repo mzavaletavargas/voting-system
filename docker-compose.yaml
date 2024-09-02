@@ -1,6 +1,38 @@
 version: '3'
 
 services:
+  voter-ui:
+    build:
+      context: ./voter-ui
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./voter-ui:/app
+      - /app/node_modules
+    command: yarn dev
+    environment:
+      - API_HOSTNAME=http://localhost:8080
+      - WEBSOCKET_HOSTNAME=http://localhoste:8081
+
+  voting-service:
+    build:
+      context: ./voting-service
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    depends_on:
+      - db
+    
+  stream-service:
+    build:
+      context: ./stream-service
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    depends_on:
+      - db
 
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
@@ -34,3 +66,18 @@ services:
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
       KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local

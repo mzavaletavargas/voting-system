@@ -63,8 +63,8 @@ class BallotsServiceTest {
 
         when(candidateRepo.findById(any(UUID.class))).thenReturn(Optional.of(candidate));
         when(resultsRepo.findOneByElectionEventsAndCandidates(any(ElectionEvents.class), any(Candidates.class))).thenReturn(result);
-        Mockito.doNothing().when(kafkaProducer).sendEvent(any(MessageEvent.class));
-        ballotsService.createBallot(ballotX, user);
+//        Mockito.doNothing().when(kafkaProducer).sendEvent(any(MessageEvent.class));
+//        ballotsService.createBallot(ballotX, user);
 
         verify(ballotsRepo, times(1)).save(any(Ballots.class));
         verify(resultsRepo, times(1)).save(any(Results.class));

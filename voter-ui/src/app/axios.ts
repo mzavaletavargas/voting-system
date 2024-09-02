@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an axios instance
 const http = axios.create({
-    baseURL: 'http://localhost:8080',
+    baseURL: process.env.API_HOSTNAME || 'http://localhost:8080',
 });
 
 // Add a request interceptor

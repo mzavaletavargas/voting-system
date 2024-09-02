@@ -1,45 +1,21 @@
 # Readme
-## login page
+## Usage
 
-http://localhost:3000/
-
-## Results
-
-http://localhost:3000/results
-
-Show results, expects data from websocket.
-for now I'm receving data from a POST method and present this in the ui.
-
-Service: stream-service![](2024-08-30-01-00-52.png)
-
-http://localhost:8081/send-message
+docker-compose up
+open  http://localhost:3000/ and participate by using
 
 ```
-{
-  "totalVoters": 300,
-  "totalVotes": 100,
-  "blankVotes": 30,
-  "candidates": [
-    {
-      "candidateId": "3faf55f2-2d6a-4d99-b28c-1b1ac4de4c13",
-      "candidateName": "Candidate 1",
-      "partyName": "Party 1",
-      "votes": 23
-    },
-    {
-      "candidateId": "6db6cbb7-1e4d-4d9c-8f3f-07f3a885cb6b",
-      "candidateName": "Candidate 2",
-      "partyName": "Party 2",
-      "votes": 50
-    },
-    {
-      "candidateId": "2c8a6d5a-b64d-4c9d-8d1c-54a9ff3b019b",
-      "candidateName": "Candidate 3",
-      "partyName": "Party 1",
-      "votes": 10
-    }
-  ]
-}
+documentId: 76663232
+verificationNumber: 1
 ```
 
-![](resources/2024-08-30-01-00-52.png)
+and have open http://localhost:3000/election-events/3caf15f5-c58c-4146-b095-f285c08f5556/results to check websocket changes
+
+Example identify
+
+```
+curl --location 'http://localhost:8080/citizen/identify' \
+--form 'verificationImage=@"/Users/gzavaleta/Downloads/test1.jpg"' \
+--form 'documentId="76663232"' \
+--form 'verificationNumber="1"'
+```

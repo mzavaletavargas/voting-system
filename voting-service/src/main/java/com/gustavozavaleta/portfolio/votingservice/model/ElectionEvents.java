@@ -1,5 +1,6 @@
 package com.gustavozavaleta.portfolio.votingservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -21,8 +22,10 @@ public class ElectionEvents {
     @Column(columnDefinition = "boolean default false")
     private Boolean active;
     @OneToMany(mappedBy = "electionEvents", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Ballots> ballots;
     @OneToMany(mappedBy = "electionEvents", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Results> results;
     @OneToMany(mappedBy = "electionEvent", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Candidates> candidates;

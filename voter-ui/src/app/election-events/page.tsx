@@ -1,7 +1,6 @@
 "use client"
 import React, { useState, useEffect } from "react";
 
-import "./styles.css"; // Ensure to create and import this CSS file for styles
 import { useRouter } from 'next/navigation'
 import http from "../../app/axios";
 
@@ -20,7 +19,7 @@ function ElectionEvents() {
   }, []);
   const router = useRouter()
 
-  const handleElectionClick = (id) => {
+  const handleElectionClick = (id: string) => {
     router.push(`/election-events/${id}`);
   };
 
@@ -28,7 +27,7 @@ function ElectionEvents() {
     <div className="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold mb-6 text-center">Available Elections</h2>
       <div className="space-y-6">
-        {elections.map((election) => (
+        {elections.map((election: any) => (
           <div
             key={election.id}
             className={`p-4 border rounded-lg cursor-pointer ${election.active ? "border-gray-300 bg-white hover:bg-gray-100" : "border-gray-300 bg-gray-200 text-gray-500 cursor-not-allowed"}`}

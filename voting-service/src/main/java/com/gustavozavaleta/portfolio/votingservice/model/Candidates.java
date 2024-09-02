@@ -25,8 +25,10 @@ public class Candidates {
     @JsonIgnore
     private Users users;
     @OneToMany(mappedBy = "candidates", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Ballots> ballots;
     @OneToMany(mappedBy = "candidates", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Results> results;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)

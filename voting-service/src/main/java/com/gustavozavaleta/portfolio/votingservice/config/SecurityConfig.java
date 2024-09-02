@@ -23,16 +23,18 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf(customizer -> customizer.disable())
-                .authorizeHttpRequests(request -> request.requestMatchers("citizen/identify")
-                        .permitAll()
-                        .anyRequest().authenticated())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+        httpSecurity
+                .csrf(csrf -> csrf.disable()) // Disable CSRF protection for stateless sessions
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/citizen/identify").permitAll() // Permit specific paths
+                        .requestMatchers( "/election-events/**").permitAll()
+                        .anyRequest().authenticated() // Authenticate all other requests
+                )
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Stateless session
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class); // Add the JWT filter
+
         return httpSecurity.build();
-
     }
-
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();

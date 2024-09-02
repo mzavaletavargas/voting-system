@@ -34,10 +34,10 @@ voting-system.events.presidential-2024
 
 ## folders
 
-playground: test java stuff
-voting-service: identify a user and make possible to participate in the voting application
-voter-ui: it's the FE that will be render and communicate to the system
-stream-service: will feed data to the public (real time resuls of the election in process)
+* *playground*: test java stuff
+* *voting-service*: identify a user and make it possible to participate in the voting application
+* *voter-ui*: it's the FE that will be rendered and communicate to the system
+* *stream-service*: will feed data to the public (real time results of the election in process)
 
 ## Todo
 

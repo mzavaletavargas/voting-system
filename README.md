@@ -19,8 +19,7 @@ Key Features:
 
 ## How to run
 
-docker-compose up
-open http://localhost:3000/ check the events and participate by using.
+`docker-compose up` and open http://localhost:3000/ check the events and participate by using.
 
 ```
 documentId: 76663232

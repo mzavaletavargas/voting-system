@@ -17,6 +17,22 @@ Key Features:
 - docker
 - java
 
+## How to run
+
+docker-compose up
+open http://localhost:3000/ check the events and participate by using.
+
+```
+documentId: 76663232
+verificationNumber: 1
+```
+
+and have open http://localhost:3000/election-events/3caf15f5-c58c-4146-b095-f285c08f5556/results to receive updates
+
+## topic
+
+voting-system.events.presidential-2024
+
 ## folders
 
 playground: test java stuff
@@ -35,18 +51,3 @@ stream-service: will feed data to the public (real time resuls of the election i
 - ~~add kafka to communicate and change communication to be an event-driven design~~
 - add integration tests
 - update the project to work with k8s
-
-## How to run
-
-voter-ui: yarn dev
-voting-service: run the app with graddle
-
-![](/resources/demo1.mov)
-
-<video style="width:70%" controls src="resources/demo1.mov"></video>
-
-
-## topic
-
-voting-system.events.presidential-2024
-

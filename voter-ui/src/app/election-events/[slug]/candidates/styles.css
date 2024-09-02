@@ -1,0 +1,39 @@
+.crossed {
+  opacity: 0.3;
+}
+
+.crossmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.crossmark::before,
+.crossmark::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background-color: red;
+  transform: rotate(45deg);
+  transform-origin: center;
+  top: 0;
+  left: 50%;
+  animation: cross-animation 0.3s ease-in-out forwards;
+}
+
+.crossmark::after {
+  transform: rotate(-45deg);
+}
+
+@keyframes cross-animation {
+  from {
+    height: 0%;
+  }
+  to {
+    height: 100%;
+  }
+}

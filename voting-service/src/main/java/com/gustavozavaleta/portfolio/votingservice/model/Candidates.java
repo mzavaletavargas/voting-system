@@ -3,13 +3,16 @@ package com.gustavozavaleta.portfolio.votingservice.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Candidates {
     @Id
@@ -34,8 +37,4 @@ public class Candidates {
     @JoinColumn(nullable = false)
     @JsonIgnore
     private ElectionEvents electionEvent;
-
-
-
-
 }

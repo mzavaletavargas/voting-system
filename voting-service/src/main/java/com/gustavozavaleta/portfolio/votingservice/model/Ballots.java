@@ -1,6 +1,8 @@
 package com.gustavozavaleta.portfolio.votingservice.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +11,8 @@ import java.util.UUID;
 
 
 @Entity
+@Getter
+@Setter
 public class Ballots {
     @Id
     @GeneratedValue
@@ -20,37 +24,4 @@ public class Ballots {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     private Candidates candidates;
-
-
-    public ElectionEvents getElectionEvents() {
-        return electionEvents;
-    }
-
-    public void setElectionEvents(ElectionEvents electionEvents) {
-        this.electionEvents = electionEvents;
-    }
-
-    public Candidates getCandidates() {
-        return candidates;
-    }
-
-    public void setCandidates(Candidates candidates) {
-        this.candidates = candidates;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
-    }
 }

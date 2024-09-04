@@ -6,6 +6,8 @@ import com.gustavozavaleta.portfolio.votingservice.model.Candidates;
 import com.gustavozavaleta.portfolio.votingservice.model.ElectionEvents;
 import com.gustavozavaleta.portfolio.votingservice.services.ElectionsEventServices;
 import com.gustavozavaleta.portfolio.votingservice.services.ResultsService;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,15 +16,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("election-events")
+@AllArgsConstructor
 public class ElectionsController {
 
     private final ElectionsEventServices electionsEventServices;
     private final ResultsService resultsService;
-
-    public ElectionsController(ElectionsEventServices electionsEventServices, ResultsService resultsService) {
-        this.electionsEventServices = electionsEventServices;
-        this.resultsService = resultsService;
-    }
 
     @GetMapping
     public List<ElectionEvents> getActiveElectionEvents() {
@@ -38,6 +36,4 @@ public class ElectionsController {
     public MessageEvent results(@PathVariable String electionId) {
         return resultsService.getCurrentResults(electionId);
     }
-
-
 }

@@ -1,5 +1,6 @@
 package com.gustavozavaleta.portfolio.votingservice.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.gustavozavaleta.portfolio.votingservice.controllers.dto.MessageEvent;
 import com.gustavozavaleta.portfolio.votingservice.model.*;
 import com.gustavozavaleta.portfolio.votingservice.repositories.BallotsRepo;
@@ -34,9 +35,6 @@ class BallotsServiceTest {
     @Mock
     private UserElectionRecordRepo userElectionRecordRepo;
 
-    @Mock
-    private KafkaProducer kafkaProducer;
-
     @InjectMocks
     private BallotsService ballotsService;
 
@@ -46,15 +44,15 @@ class BallotsServiceTest {
     }
 
     @Test
-    public void testCreateBallotSuccessfully() {
+    public void testCreateBallotSuccessfully() throws JsonProcessingException {
         Ballots ballotX = new Ballots();
         Candidates candidate = new Candidates();
         ElectionEvents electionEvent = new ElectionEvents();
-        Users user = new Users();
         Results result = new Results();
         result.setTotalVotes(1);
         UserElectionRecord electionRecord = new UserElectionRecord();
-
+        Users user = new Users();
+        user.setId(UUID.randomUUID());
         candidate.setId(UUID.randomUUID());
         candidate.setElectionEvent(electionEvent);
 
@@ -63,9 +61,9 @@ class BallotsServiceTest {
 
         when(candidateRepo.findById(any(UUID.class))).thenReturn(Optional.of(candidate));
         when(resultsRepo.findOneByElectionEventsAndCandidates(any(ElectionEvents.class), any(Candidates.class))).thenReturn(result);
-//        Mockito.doNothing().when(kafkaProducer).sendEvent(any(MessageEvent.class));
-//        ballotsService.createBallot(ballotX, user);
-
+//        when(resultsRepo.save(any(Results.class))).thenReturn(result);
+//        when(userElectionRecordRepo.save(any(UserElectionRecord.class))).thenReturn(electionRecord);
+        MessageEvent messageEvent = ballotsService.createBallot(ballotX, user);
         verify(ballotsRepo, times(1)).save(any(Ballots.class));
         verify(resultsRepo, times(1)).save(any(Results.class));
         verify(userElectionRecordRepo, times(1)).save(any(UserElectionRecord.class));

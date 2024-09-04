@@ -2,13 +2,15 @@ package com.gustavozavaleta.portfolio.votingservice.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Results {
-
     @Id
     private UUID id;
     private int totalVotes;
@@ -19,6 +21,4 @@ public class Results {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     private Candidates candidates;
-
-
 }

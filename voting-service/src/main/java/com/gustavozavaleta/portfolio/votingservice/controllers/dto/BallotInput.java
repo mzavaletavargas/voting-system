@@ -3,29 +3,17 @@ package com.gustavozavaleta.portfolio.votingservice.controllers.dto;
 import com.gustavozavaleta.portfolio.votingservice.model.Ballots;
 import com.gustavozavaleta.portfolio.votingservice.model.Candidates;
 import com.gustavozavaleta.portfolio.votingservice.model.ElectionEvents;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.UUID;
 
+@Getter
+@Setter
 public class BallotInput {
     private UUID candidateId;
     private UUID electionEventId;
-
-    public UUID getElectionEventId() {
-        return electionEventId;
-    }
-
-    public void setElectionEventId(UUID electionEventId) {
-        this.electionEventId = electionEventId;
-    }
-
-    public UUID getCandidateId() {
-        return candidateId;
-    }
-
-    public void setCandidateId(UUID candidateId) {
-        this.candidateId = candidateId;
-    }
 
     public Ballots toBallot() {
         var ballot = new Ballots();
